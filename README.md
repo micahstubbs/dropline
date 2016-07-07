@@ -15,11 +15,10 @@ $ npm i dropline d3 --save
 
 then, in your project:
 
-
 ```
 import dropline from 'dropline';
 
-document.body.innerHTML += '<div id='vis'></div>';
+document.body.innerHTML += '<div id="vis"></div>';
 
 const data = [
   { date: '1-May-12', value: 582.13 },
