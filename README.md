@@ -31,4 +31,4 @@ const data = [
 dropline.plot('#vis', data);
 ```
 
-![dropline-3](http://i.giphy.com/3o6Zt38IvnsZFnDPMY.gif)
+![dropline-3](http://i.giphy.com/3o6ZsSOIsTxHoN2dmU.gif)
