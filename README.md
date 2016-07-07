@@ -1,28 +1,32 @@
-a [ES2015](https://babeljs.io/docs/learn-es2015/) fork of [@micahstubbs](https://twitter.com/micahstubbs)' bl.ock [X-Value Mouseover with Droplines](http://bl.ocks.org/micahstubbs/d9f3cd0d926af7a5a1a8)
+## dropline
 
-this example also converts all CSS styles previously inside of the `<style></style>` HTML tags into inline styles applied in Javascript to d3 selections. 
+the #d3js bl.ock [ES2015 X-Value Mouseover with Droplines](http://bl.ocks.org/micahstubbs/d66a1662fd64a08051dc473f0d1f956e) packaged up as an node module.  a learning exercise for me that just might be useful to the wider world.
 
-this CSS that styles the droplines:
+the `data` parameter to `dropline.plot()` should be an array of objects that each have a `date` and `value` property.
 
-```css
-.focus line {
-  fill: none;
-  stroke: black;
-  stroke-width: 1.5px;
-  stroke-dasharray: 3 3;
-}
+#### example usage:
+
+install `dropline` from the terminal:
+
+
+```
+$ npm i dropline d3 --save
 ```
 
-becomes this Javascript that does the same thing:
+then, in your project:
 
-```Javascript
-    d3.selectAll('.focus line')
-      .style({
-        fill: 'none',
-        'stroke': 'black',
-        'stroke-width': '1.5px',
-        'stroke-dasharray': '3 3'
-      })
+
 ```
+import dropline from 'dropline';
 
-inline styles can make it easier to quickly include d3js examples like this into a larger Javascript project that is automatically built from many source files into one bundle file.
+document.body.innerHTML += '<div id='vis'></div>';
+
+const data = [
+  { date: '1-May-12', value: 582.13 },
+  { date: '30-Apr-12', value: 583.98 },
+  { date: '27-Apr-12', value: 603.00 },
+  { date: '26-Apr-12', value: 607.70 }
+];
+
+dropline.plot('#vis', data);
+```

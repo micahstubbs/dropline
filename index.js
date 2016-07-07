@@ -30,7 +30,7 @@ module.exports = {
 
     const line = d3.svg.line()
       .x(d => x(d.date))
-      .y(d => y(d.close));
+      .y(d => y(d.value));
 
     const svg = d3.select(selector).append('svg')
       .attr('width', width + margin.left + margin.right)
@@ -40,13 +40,13 @@ module.exports = {
 
     data.forEach(d => {
       d.date = parseDate(d.date);
-      d.close = +d.close;
+      d.value = +d.value;
     });
 
     data.sort((a, b) => a.date - b.date);
 
     x.domain([data[0].date, data[data.length - 1].date]);
-    y.domain(d3.extent(data, d => d.close));
+    y.domain(d3.extent(data, d => d.value));
 
     svg.append('g')
       .attr('class', 'x axis')
@@ -147,7 +147,7 @@ module.exports = {
         const d0 = data[i - 1];
         const d1 = data[i];
         const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr('transform', `translate(${x(d.date)}, ${y(d.close)})`);
+        focus.attr('transform', `translate(${x(d.date)}, ${y(d.value)})`);
         focus.select('line.x')
             .attr('x1', 0)
             .attr('x2', -x(d.date))
@@ -158,9 +158,9 @@ module.exports = {
             .attr('x1', 0)
             .attr('x2', 0)
             .attr('y1', 0)
-            .attr('y2', height - y(d.close));
+            .attr('y2', height - y(d.value));
 
-        focus.select('text').text(formatCurrency(d.close));
+        focus.select('text').text(formatCurrency(d.value));
       }
     }
 } 
