@@ -1,0 +1,29 @@
+{
+  "name": "dropline",
+  "version": "0.1.0",
+  "description": "a line chart with droplines that follow the x-position of the cursor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micahstubbs/dropline.git"
+  },
+  "keywords": [
+    "dropline",
+    "line",
+    "chart",
+    "d3",
+    "x"
+  ],
+  "author": "@micahstubbs <micah.stubbs@gmail.com> (https://twitter.com/micahstubbs)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/micahstubbs/dropline/issues"
+  },
+  "homepage": "https://github.com/micahstubbs/dropline#readme",
+  "dependencies": {
+    "d3": "^3.5.17"
+  }
+}
