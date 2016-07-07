@@ -32,7 +32,7 @@ module.exports = {
       .x(d => x(d.date))
       .y(d => y(d.close));
 
-    const svg = d3.select('body').append('svg')
+    const svg = d3.select(selector).append('svg')
       .attr('width', width + margin.left + margin.right)
       .attr('height', height + margin.top + margin.bottom)
       .append('g')
