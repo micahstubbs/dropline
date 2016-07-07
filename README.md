@@ -4,9 +4,10 @@ the #d3js bl.ock [ES2015 X-Value Mouseover with Droplines](http://bl.ocks.org/mi
 
 the `data` parameter to `dropline.plot()` should be an array of objects that each have a `date` and `value` property.
 
-#### example usage:
+#### example  
 
-install `dropline` from the terminal:
+
+install `dropline` from the terminal:  
 
 
 ```
