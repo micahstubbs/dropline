@@ -71,96 +71,96 @@ module.exports = {
         'shape-rendering': 'crispEdges'
       })
 
-      d3.selectAll('.axis line')
-        .style({
-          fill: 'none',
-          stroke: '#000',
-          'shape-rendering': 'crispEdges'
-        })
+    d3.selectAll('.axis line')
+      .style({
+        fill: 'none',
+        stroke: '#000',
+        'shape-rendering': 'crispEdges'
+      })
 
-      d3.selectAll('.x.axis path')
-        .style('display', 'none');
+    d3.selectAll('.x.axis path')
+      .style('display', 'none');
 
-      svg.append('path')
-        .datum(data)
-        .attr('class', 'line')
-        .attr('d', line);
+    svg.append('path')
+      .datum(data)
+      .attr('class', 'line')
+      .attr('d', line);
 
-      const focus = svg.append('g')
-        .attr('class', 'focus')
-        .style('display', 'none');
+    const focus = svg.append('g')
+      .attr('class', 'focus')
+      .style('display', 'none');
 
-      focus.append('circle')
-        .attr('r', 4.5);
+    focus.append('circle')
+      .attr('r', 4.5);
 
-      focus.append('line')
-          .classed('x', true);
+    focus.append('line')
+        .classed('x', true);
 
-      focus.append('line')
-        .classed('y', true);
+    focus.append('line')
+      .classed('y', true);
 
-      focus.append('text')
-        .attr('x', 9)
-        .attr('dy', '.35em');
+    focus.append('text')
+      .attr('x', 9)
+      .attr('dy', '.35em');
 
-      svg.append('rect')
-        .attr('class', 'overlay')
-        .attr('width', width)
-        .attr('height', height)
-        .on('mouseover', () => focus.style('display', null))
-        .on('mouseout', () => focus.style('display', 'none'))
-        .on('mousemove', mousemove);
+    svg.append('rect')
+      .attr('class', 'overlay')
+      .attr('width', width)
+      .attr('height', height)
+      .on('mouseover', () => focus.style('display', null))
+      .on('mouseout', () => focus.style('display', 'none'))
+      .on('mousemove', mousemove);
 
-      d3.selectAll('.line')
-        .style({
-          fill: 'none',
-          stroke: 'steelblue',
-          'stroke-width': '1.5px'
-        });
+    d3.selectAll('.line')
+      .style({
+        fill: 'none',
+        stroke: 'steelblue',
+        'stroke-width': '1.5px'
+      });
 
-      d3.selectAll('.overlay')
-        .style({
-          fill: 'none',
-          'pointer-events': 'all'
-        });
+    d3.selectAll('.overlay')
+      .style({
+        fill: 'none',
+        'pointer-events': 'all'
+      });
 
-      d3.selectAll('.focus')
-        .style('opacity', 0.7);
+    d3.selectAll('.focus')
+      .style('opacity', 0.7);
 
-      d3.selectAll('.focus circle')
-        .style({
-          fill: 'none',
-          stroke: 'black'
-        })
+    d3.selectAll('.focus circle')
+      .style({
+        fill: 'none',
+        stroke: 'black'
+      })
 
-      d3.selectAll('.focus line')
-        .style({
-          fill: 'none',
-          'stroke': 'black',
-          'stroke-width': '1.5px',
-          'stroke-dasharray': '3 3'
-        })
+    d3.selectAll('.focus line')
+      .style({
+        fill: 'none',
+        'stroke': 'black',
+        'stroke-width': '1.5px',
+        'stroke-dasharray': '3 3'
+      })
 
-      function mousemove() {
-        const x0 = x.invert(d3.mouse(this)[0]);
-        const i = bisectDate(data, x0, 1);
-        const d0 = data[i - 1];
-        const d1 = data[i];
-        const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-        focus.attr('transform', `translate(${x(d.date)}, ${y(d.value)})`);
-        focus.select('line.x')
-            .attr('x1', 0)
-            .attr('x2', -x(d.date))
-            .attr('y1', 0)
-            .attr('y2', 0);
+    function mousemove() {
+      const x0 = x.invert(d3.mouse(this)[0]);
+      const i = bisectDate(data, x0, 1);
+      const d0 = data[i - 1];
+      const d1 = data[i];
+      const d = x0 - d0.date > d1.date - x0 ? d1 : d0;
+      focus.attr('transform', `translate(${x(d.date)}, ${y(d.value)})`);
+      focus.select('line.x')
+          .attr('x1', 0)
+          .attr('x2', -x(d.date))
+          .attr('y1', 0)
+          .attr('y2', 0);
 
-        focus.select('line.y')
-            .attr('x1', 0)
-            .attr('x2', 0)
-            .attr('y1', 0)
-            .attr('y2', height - y(d.value));
+      focus.select('line.y')
+          .attr('x1', 0)
+          .attr('x2', 0)
+          .attr('y1', 0)
+          .attr('y2', height - y(d.value));
 
-        focus.select('text').text(formatCurrency(d.value));
-      }
+      focus.select('text').text(formatCurrency(d.value));
     }
+  }
 } 
