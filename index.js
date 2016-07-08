@@ -152,11 +152,11 @@ module.exports = {
 
       focus.select('text').text(formatCurrency(d.value));
     }
-  } 
 
-  function type(d) {
-    d.date = parseTime(d.date);
-    d.value = +d.value;
-    return d;
+    function type(d) {
+      d.date = parseTime(d.date);
+      d.value = +d.value;
+      return d;
+    } 
   }
 } 
