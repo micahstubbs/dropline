@@ -1,6 +1,6 @@
 {
   "name": "dropline",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "a line chart with droplines that follow the x-position of the cursor",
   "main": "index.js",
   "scripts": {
