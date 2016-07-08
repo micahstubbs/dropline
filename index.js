@@ -1,5 +1,4 @@
 var d3 = require('d3');
-require("d3-selection-multi");
 
 module.exports = {
   plot: function(selector, data, options) {
@@ -56,18 +55,14 @@ module.exports = {
 
     // style the axes
     d3.selectAll('.axis path')
-      .styles({
-        fill: 'none',
-        stroke: '#000',
-        'shape-rendering': 'crispEdges'
-      });
+      .style('fill', 'none')
+      .style('stroke', 'black')
+      .style('shape-rendering', 'crispEdges');
 
     d3.selectAll('.axis line')
-      .styles({
-        fill: 'none',
-        stroke: '#000',
-        'shape-rendering': 'crispEdges'
-      });
+      .style('fill', 'none')
+      .style('stroke', 'black')
+      .style('shape-rendering', 'crispEdges');
 
     d3.selectAll('.axis--x path')
       .style('display', 'none');
@@ -85,7 +80,7 @@ module.exports = {
       .attr('r', 4.5);
 
     focus.append('line')
-        .classed('x', true);
+      .classed('x', true);
 
     focus.append('line')
       .classed('y', true);
@@ -103,34 +98,26 @@ module.exports = {
       .on('mousemove', mousemove);
 
     d3.selectAll('.line')
-      .styles({
-        fill: 'none',
-        stroke: 'steelblue',
-        'stroke-width': '1.5px'
-      });
+      .style('fill', 'none')
+      .style('stroke', 'steelblue')
+      .style('stroke-width', '1.5px');
 
     d3.selectAll('.overlay')
-      .styles({
-        fill: 'none',
-        'pointer-events': 'all'
-      });
+      .style('fill', 'none')
+      .style('pointer-events', 'all');
 
     d3.selectAll('.focus')
       .style('opacity', 0.7);
 
     d3.selectAll('.focus circle')
-      .styles({
-        fill: 'none',
-        stroke: 'black'
-      });
+      .style('fill', 'none')
+      .style('stroke', 'black');
 
     d3.selectAll('.focus line')
-      .styles({
-        fill: 'none',
-        'stroke': 'black',
-        'stroke-width': '1.5px',
-        'stroke-dasharray': '3 3'
-      });
+      .style('fill', 'none')
+      .style('stroke', 'black')
+      .style('stroke-width', '1.5px')
+      .style('stroke-dasharray', '3 3');
 
     function mousemove() {
       const x0 = x.invert(d3.mouse(this)[0]);
