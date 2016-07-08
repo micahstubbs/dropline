@@ -1,4 +1,5 @@
 var d3 = require('d3');
+require("d3-selection-multi");
 
 module.exports = {
   plot: function(selector, data, options) {
@@ -59,14 +60,14 @@ module.exports = {
         fill: 'none',
         stroke: '#000',
         'shape-rendering': 'crispEdges'
-      })
+      });
 
     d3.selectAll('.axis line')
       .styles({
         fill: 'none',
         stroke: '#000',
         'shape-rendering': 'crispEdges'
-      })
+      });
 
     d3.selectAll('.axis--x path')
       .style('display', 'none');
@@ -121,7 +122,7 @@ module.exports = {
       .styles({
         fill: 'none',
         stroke: 'black'
-      })
+      });
 
     d3.selectAll('.focus line')
       .styles({
@@ -129,7 +130,7 @@ module.exports = {
         'stroke': 'black',
         'stroke-width': '1.5px',
         'stroke-dasharray': '3 3'
-      })
+      });
 
     function mousemove() {
       const x0 = x.invert(d3.mouse(this)[0]);
