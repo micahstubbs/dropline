@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/micahstubbs/dropline#readme",
   "dependencies": {
-    "d3": "^3.5.17"
+    "d3": "^4.1.0",
+    "d3-selection-multi": "^0.4.0"
   }
 }

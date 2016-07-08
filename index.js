@@ -6,27 +6,21 @@ module.exports = {
     const width = 960 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
 
-    const parseDate = d3.time.format('%d-%b-%y').parse;
+    const parseTime = d3.timeParse('%d-%b-%y');
     const bisectDate = d3.bisector(d => d.date).left;
     const formatValue = d3.format(',.2f');
     const formatCurrency = d => `$${formatValue(d)}`;
 
+    data = data.map(d => type(d));
+
     d3.select(selector)
       .style('font', '10px sans-serif')
 
-    const x = d3.time.scale()
+    const x = d3.scaleTime()
       .range([0, width]);
 
-    const y = d3.scale.linear()
+    const y = d3.scaleLinear()
       .range([height, 0]);
-
-    const xAxis = d3.svg.axis()
-      .scale(x)
-      .orient('bottom');
-
-    const yAxis = d3.svg.axis()
-      .scale(y)
-      .orient('left');
 
     const line = d3.svg.line()
       .x(d => x(d.date))
@@ -38,25 +32,21 @@ module.exports = {
       .append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    data.forEach(d => {
-      d.date = parseDate(d.date);
-      d.value = +d.value;
-    });
-
     data.sort((a, b) => a.date - b.date);
 
     x.domain([data[0].date, data[data.length - 1].date]);
     y.domain(d3.extent(data, d => d.value));
 
     svg.append('g')
-      .attr('class', 'x axis')
+      .attr('class', 'x axis axis--x')
       .attr('transform', `translate(0, ${height})`)
-      .call(xAxis);
+      .call(d3.axisBottom(x));
 
     svg.append('g')
-      .attr('class', 'y axis')
-      .call(yAxis)
+      .attr('class', 'y axis axis--y')
+      .call(d3.axisLeft(y))
       .append('text')
+        .attr('class', 'axis-title')
         .attr('transform', 'rotate(-90)')
         .attr('y', 6)
         .attr('dy', '.71em')
@@ -65,20 +55,20 @@ module.exports = {
 
     // style the axes
     d3.selectAll('.axis path')
-      .style({
+      .styles({
         fill: 'none',
         stroke: '#000',
         'shape-rendering': 'crispEdges'
       })
 
     d3.selectAll('.axis line')
-      .style({
+      .styles({
         fill: 'none',
         stroke: '#000',
         'shape-rendering': 'crispEdges'
       })
 
-    d3.selectAll('.x.axis path')
+    d3.selectAll('.axis--x path')
       .style('display', 'none');
 
     svg.append('path')
@@ -112,14 +102,14 @@ module.exports = {
       .on('mousemove', mousemove);
 
     d3.selectAll('.line')
-      .style({
+      .styles({
         fill: 'none',
         stroke: 'steelblue',
         'stroke-width': '1.5px'
       });
 
     d3.selectAll('.overlay')
-      .style({
+      .styles({
         fill: 'none',
         'pointer-events': 'all'
       });
@@ -128,13 +118,13 @@ module.exports = {
       .style('opacity', 0.7);
 
     d3.selectAll('.focus circle')
-      .style({
+      .styles({
         fill: 'none',
         stroke: 'black'
       })
 
     d3.selectAll('.focus line')
-      .style({
+      .styles({
         fill: 'none',
         'stroke': 'black',
         'stroke-width': '1.5px',
@@ -162,5 +152,11 @@ module.exports = {
 
       focus.select('text').text(formatCurrency(d.value));
     }
+  } 
+
+  function type(d) {
+    d.date = parseTime(d.date);
+    d.value = +d.value;
+    return d;
   }
 } 
