@@ -22,7 +22,7 @@ module.exports = {
     const y = d3.scaleLinear()
       .range([height, 0]);
 
-    const line = d3.svg.line()
+    const line = d3.line()
       .x(d => x(d.date))
       .y(d => y(d.value));
 
